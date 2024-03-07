@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    #build:
+      #context: ./postgres
+    container_name: newpg-container
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Harshith
+      POSTGRES_DB: prithvi
+    volumes:
+      - ./dataHost:/data 
+
+  go-app:
+    build: .
+    container_name: go-app-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    
+    # environment:
+    #   DB_HOST: postgres
+    #   DB_PORT: 5432
+    #   DB_USER: hp
+    #   DB_PASSWORD: Harshith
+    #   DB_NAME: newprojectdb
+  
