@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: hp2411/myhnew-app:latest
+        ports:
+        - containerPort: 8080
+        # env:
+        # - name: user
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-secret
+        #       key: username
+        # - name: password
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-secret
+        #       key: password
+        # - name: db
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-secret
+        #       key: db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080   

@@ -30,7 +30,7 @@ func main() {
 	//db, err = gorm.Open(postgres.Open("postgres://postgres:@localhost:5432/newprojectdb?sslmode=disable"), &gorm.Config{})
 	//db, err = gorm.Open(postgres.Open("postgres://hp:Harshith@postgres:5432/newprojectdb?sslmode=disable"), &gorm.Config{})
 	time.Sleep(10 * time.Second)
-	dsn := "host=postgres user=postgres password=Harshith dbname=prithvi port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := "host=db-service user=hp password=Harshith dbname=prithvi port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 	db, err = gorm.Open("postgres", dsn)
 
 	// url := fmt.Sprintf("postgres://%v:%v@%v:%v/%v?sslmode=disable",
